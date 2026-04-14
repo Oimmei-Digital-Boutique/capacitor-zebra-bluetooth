@@ -319,7 +319,7 @@ public class CapacitorZebraBluetoothPlugin extends Plugin {
         call.resolve(result);
     }
 
-    private boolean hasRequiredPermissions() {
+    public boolean hasRequiredPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             return ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED &&
                    ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED;
@@ -329,7 +329,7 @@ public class CapacitorZebraBluetoothPlugin extends Plugin {
         }
     }
 
-    private void requestAllPermissions(PluginCall call, String callbackName) {
+    protected void requestAllPermissions(PluginCall call, String callbackName) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             requestPermissionForAliases(new String[]{"bluetoothConnect", "bluetoothScan"}, call, callbackName);
         } else {
